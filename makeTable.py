@@ -12,4 +12,5 @@ if __name__=="__main__":
         if len(h) < 2:continue
         table.append(u64(sha256(h[1]).digest()[:8]))
 
+    table.sort()
     open("toBlock_hashtable","w").write(str(table))
