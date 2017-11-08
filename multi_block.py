@@ -49,7 +49,7 @@ def hostCheck(payload):
     if protocalIdentifier != TYPETCP:   #check if packet is TCP
 	print "NOT TCP PROTOCAL!"
         return 1
-    print "ip protocol : "+str(protocalIdentifier)
+    #print "ip protocol : "+str(protocalIdentifier)
     ipHeaderLen = (ord(payload[0])&0xf)*4
     #print "ip header len : "+str(ipHeaderLen)
     tcp = payload[ipHeaderLen:]
