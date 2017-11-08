@@ -29,7 +29,7 @@ def getHost(data):
 
 def check(value):   #Binary Search
     first=0
-    last=10**6-1
+    last=len(blockTable)-1
     mid=0
 
     while (first <= last):
