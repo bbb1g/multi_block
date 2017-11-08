@@ -3,6 +3,7 @@
 from netfilterqueue import NetfilterQueue
 from pwn import u64
 from hashlib import sha256
+import os
 
 TYPETCP=6
 print "Loading Block Table..."
@@ -78,13 +79,24 @@ def callBack(pkt):
         pkt.drop()
     return
 
+def main_init():
+    cmd = "sudo iptables -A OUTPUT -p tcp -j NFQUEUE\n"
+    cmd += "sudo iptables -A INPUT -p tcp -j NFQUEUE\n"
+    os.system(cmd)
+
+def fini():
+    cmd = "sudo iptables -F\n"
+    os.system(cmd)
+	
 if __name__=="__main__":
+    main_init()
     nfqueue = NetfilterQueue()
     nfqueue.bind(0, callBack)
 
     try:
         nfqueue.run()
-    except:
+    except KeyboardInterrupt:
+	fini()
         print(' ')
 
     nfqueue.unbind()
