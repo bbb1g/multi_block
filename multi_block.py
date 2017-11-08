@@ -18,7 +18,7 @@ def getHost(data):
        (not data.startswith("PUT")) and \
        (not data.startswith("OPTIONS")):
            return 0         #check if packet is HTTP protocol
-    print "YOYO"
+    #print "YOYO"
     hostOffset = data.find("Host: ")
     if not hostOffset:
         return 0            #something wrong
@@ -66,6 +66,7 @@ def hostCheck(payload):
     if searchResult == -1:
         return 1
     else:
+	print "Blocking %s..."%(host)
         return 0
 
 def callBack(pkt):
