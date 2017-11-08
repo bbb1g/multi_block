@@ -97,7 +97,8 @@ if __name__=="__main__":
         nfqueue.run()
     except KeyboardInterrupt:
 	fini()
+	nfqueue.unbind()
         print(' ')
 
-    nfqueue.unbind()
+    
     
