@@ -68,7 +68,7 @@ def hostCheck(payload):
     else:
         return 0
 
-def print_and_accept(pkt):
+def callBack(pkt):
     payload=pkt.get_payload()
     isValid = hostCheck(payload)
     if isValid:
@@ -79,7 +79,7 @@ def print_and_accept(pkt):
 
 if __name__=="__main__":
     nfqueue = NetfilterQueue()
-    nfqueue.bind(0, print_and_accept)
+    nfqueue.bind(0, callBack)
 
     try:
         nfqueue.run()
